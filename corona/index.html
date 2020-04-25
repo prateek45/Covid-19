@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid19 DashBoard</title>
+    <link rel = "icon" href ="/images/corona-logo.png" type = "image/x-icon"> 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c3d69a71c6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    <script>src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.js"</script>
+
+</head>
+<body>
+    <div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about" onclick="about();">About</a></li>
+            <li><a href="#contact" onclick="contact();">Contact</a></li>
+            <li style="float:right"><a class="active" href="https://www.linkedin.com/in/prateek-kumar-gupta-347153173/">About me</a></li>
+        </ul>
+    </div>
+   
+ <br>
+ <br>
+    <div style="margin-top: 70px; display: flex;">
+        <div class="row">
+            <div class="leftside col-lg-3 col-12 order-lg-1 order-2 ">
+                <div style="vertical-align: middle; text-align: center; margin-top: 100px;">
+                    <img style="vertical-align: middle;" src="images/stopcorona.jpg" alt="StopCorona">
+                </div>
+            </div>
+
+            <div class="rightside col-lg-6 col-12 order-lg-2 order-1 ">
+                <div  style="vertical-align: middle; text-align: center; margin-top: 120px;">
+                    <h1>Go Cor<span class="coronavirus" ><img style="width: 10%; height: auto;" src="images/covid-virus.png" alt="o"></span>na Go!</h1>
+                    <h3  style="font-family: Georgia, 'Times New Roman', Times, serif;">Let's stay Indors-Safe and Fight together!!</h3>
+                </div>
+            </div>
+            <div class="col-lg-3 corona_update col-12 order-lg-3 order-3" style="display: block; margin-top: 30px;">
+
+                <div class="mb-2">
+                    <h3 class="text-uppercase"  style="font-family: Georgia, 'Times New Roman', Times, serif;">Covid-19 Updates <a href="#countriesdata" onclick="countriesdata();" title="Click for Covid stats in Detail" style=" color: #5ce9a0;" class="icons"> <i class="fas fa-info-circle"></i></a></h3>
+                </div>
+                <div id="initial"> 
+                    <div style="color: darkblue">
+                        <h1 class="count" id="total" >0</h1>
+                        <p>Total Cases</p>
+                        <hr>
+                    </div>
+                    
+                    <div style="color: rgba(197, 192, 45, 0.87);">
+                        <h1 class="count" id="active">0</h1>
+                        <p>Active Cases</p>
+                        <hr>
+                    </div>
+                    <div style="color: rgb(162, 221, 74);">
+                        <h1 class="count" id="cured">0</h1>
+                        <p>Cured Cases</p>
+                        <hr>
+                    </div>
+                    <div style="color: rgb(156, 70, 70);">
+                        <h1 class="count" id="death">0</h1>
+                        <p>Death Cases</p>
+                        <hr>
+                    </div>
+                </div>
+            
+            </div>
+                
+        </div>
+    </div>
+    <br>
+ <br>
+
+    <!-- corona updates -->
+<section id="countriesdata" style="margin-top: 50px; margin-bottom: 50px;">
+    <div class="container" id="countrydata">
+        <h1>Select Country to view its Data:</h1>
+        <select id="countries_options" style="border-radius: 5px;" >
+            <option value="disabled" disabled selected>Select Country:</option>
+        </select>
+    </div>
+    <div class="container" id="numbers">
+        <div class="row" id="countrynumbers" style="display: flex; justify-content: center;">
+            <div class="counting col-lg-2 col-md-3 col-12 order-lg-1 order-1" style="background-image: linear-gradient(to bottom right, rgb(21, 126, 255) , rgb(120, 120, 247));">
+                <div id="totalc" style="color: rgba(23, 23, 138, 0.911);" >--</div>
+                <p style="color: rgba(21, 21, 160, 0.9);">Total Cases</p>
+            </div>
+            <div class="counting col-lg-2 col-md-3 col-12 order-lg-2 order-2" style="background-image: linear-gradient(to bottom right, rgb(248, 237, 85) , rgb(250, 255, 147));">
+                <div id="activec" style="color: rgba(141, 121, 6, 0.925);" >--</div>
+                <p style="color: rgba(165, 141, 6, 0.9);">Active Cases</p>
+            </div>
+            <div class="counting col-lg-2 col-md-3 col-12 order-lg-3 order-3" style="background-image: linear-gradient(to bottom right, rgb(106, 255, 83) , rgb(178, 238, 155));">
+                <div id="curedc" style="color: rgba(9, 136, 28, 0.9);">--</div>
+                <p style="color: rgba(24, 158, 44, 0.9);">Cured</p>
+            </div>
+            <div class="counting_last col-lg-2 col-md-3 col-12 order-lg-4 order-4" style="background-image: linear-gradient(to bottom right, rgb(255, 56, 56) , rgb(243, 158, 158));">
+                <div id="deathsc" style="color: rgba(160, 21, 21, 0.932);">--</div>
+                <p style="color: rgba(168, 34, 34, 0.932);">Deaths</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container" id="mychart">
+        <canvas id="chart">
+
+        </canvas>
+    </div>
+</section>
+
+
+<!-- About -->
+<section class="bg_section" id="about">
+    <div class="container"  style="font-family: Georgia, 'Times New Roman', Times, serif;">
+        <div class="conrtainer-fluid pt-5 pb-5">
+            <div class="section_header text-center mb-5 mt-4"><h1>About COVID-19</h1></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-12">
+                <img src="images/aboutc.jpg" alt="" class="img-fluid">
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <h2>What is Covid-19 (Coronavirus) ?</h2>
+                <p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.
+                   Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious illness.</p>
+                <p>The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).</p>
+            </div>
+        </div>
+        <div class="text-center" style="font-size: 18px; font-family: Georgia, 'Times New Roman', Times, serif;">
+            <p><strong>Click here to <a href="https://google.com" target="_blank" style="width: 5%; font-size: 14px; text-decoration: underline; color: rgb(36, 207, 201);">KNOW</a> more</strong></p>
+        </div>   
+    </div>
+    <br>    
+</section>
+<!-- emergency contacts -->
+<br>
+<section id="contact">    
+    <div class="container">
+        <div class="conrtainer-fluid pt-5 pb-3">
+            <div class="section_header text-center mb-5 mt-4"  style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                <h1>Contact</h1>
+                <p>Emergency contacts</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <figure class="text-center">
+                            <img  src="images/ambulance.png" alt="" class="img-fluid">
+                        </figure>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12" style="font-size: 20px; font-family: Georgia, 'Times New Roman', Times, serif;">
+                        <p>Contact Nearest Ambulance Available</p>
+                        <p>Helpline : 102</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="row" >
+                    <div class="col-lg-4 col-md-4 col-12" style="padding: 0;">
+                        <figure class="text-center">
+                            <img style="height: 120px; width: auto;" src="images/police.png" alt="" class="img-fluid">
+                        </figure>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12" style="padding: 0; font-size: 20px; font-family: Georgia, 'Times New Roman', Times, serif;">
+                        <p>Police to the Rescue</p>
+                        <p>Helpline : 100</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <figure class="text-center">
+                            <img style="border-radius: 50%;" src="images/corona.png" alt="" class="img-fluid">
+                        </figure>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12"  style="font-size: 20px; font-family: Georgia, 'Times New Roman', Times, serif;">
+                        <p style="margin-bottom: 5px;">Corona Virus</p>
+                        <p>Central Helpline No. : +91-11-23978046</p>
+                        <p style="font-size: 10px;">Click <a href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" target="_blank" style="color: rgb(36, 207, 201); text-decoration: underline;"> HERE </a> to know your respective state helpline numbers</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="conrtainer-fluid pt-1 pb-5">
+            <div class="section_header text-center mb-5 mt-4"  style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                <p>If you are not indian national please go to your respective Goverenment site to know the contact details</p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container" style="float: right; padding-right: 5px;">
+    <img src="images/cursor.png" onclick="gototop()" id="top" alt="">
+</div>
+<script src="corona.js"></script>
+</body>
+</html>
